@@ -103,20 +103,25 @@ def repo_has_commits(session: requests.Session, repo: str,
     """
     Quick check: does the repo have ≥1 commit in [since, until]?
     Uses per_page=1 so it costs exactly one API call per repo.
+    Returns False on 404 (inaccessible/deleted) or 409 (empty repo).
     """
     r = session.get(
         f"{GITHUB_API}/repos/{ORG}/{repo}/commits",
         params={"since": since, "until": until, "per_page": 1, "page": 1},
     )
-    if r.status_code == 409:   # empty / unborn repo
+    if r.status_code in (404, 409):
         return False
     r.raise_for_status()
     return len(r.json()) > 0
 
 
 def get_commits(session: requests.Session, repo: str,
-                since: str, until: str) -> list[dict]:
-    """Fetch ALL commits in [since, until] for the given repo."""
+                since: str, until: str) -> list[dict] | None:
+    """
+    Fetch ALL commits in [since, until] for the given repo.
+    Returns None if the repo is inaccessible (404).
+    Returns [] for empty/unborn repos (409).
+    """
     commits, page = [], 1
     while True:
         r = session.get(
@@ -124,8 +129,10 @@ def get_commits(session: requests.Session, repo: str,
             params={"since": since, "until": until,
                     "per_page": 100, "page": page},
         )
+        if r.status_code == 404:
+            return None
         if r.status_code == 409:
-            break
+            return []
         r.raise_for_status()
         batch = r.json()
         if not batch:
@@ -137,8 +144,10 @@ def get_commits(session: requests.Session, repo: str,
 
 def get_commit_stats(session: requests.Session,
                      repo: str, sha: str) -> tuple[int, int]:
-    """Return (additions, deletions) for a single commit SHA."""
+    """Return (additions, deletions) for a single commit SHA. Returns (0, 0) on 404."""
     r = session.get(f"{GITHUB_API}/repos/{ORG}/{repo}/commits/{sha}")
+    if r.status_code == 404:
+        return 0, 0
     r.raise_for_status()
     stats = r.json().get("stats", {})
     return stats.get("additions", 0), stats.get("deletions", 0)
@@ -355,7 +364,12 @@ def main():
 
     for repo in all_repos:
         name = repo["name"]
+        # Skip repos flagged as archived on GitHub
         if args.skip_archived and repo.get("archived"):
+            skipped_archived += 1
+            continue
+        # Always skip repos whose name starts with "archived" (o-ran-sc convention)
+        if name.startswith("archived"):
             skipped_archived += 1
             continue
         if matches_any(name, args.exclude):
@@ -402,6 +416,11 @@ def main():
         # Commits (full list — we already know there's ≥1)
         print("    Fetching commits …", end=" ", flush=True)
         commits = get_commits(session, repo, since_iso, until_iso)
+
+        if commits is None:
+            print("SKIPPED (404 — repo not found or inaccessible)")
+            continue
+
         print(f"{len(commits)} commits")
 
         # Per-commit additions/deletions
