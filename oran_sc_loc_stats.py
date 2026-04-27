@@ -80,16 +80,21 @@ def list_org_repos(session: requests.Session) -> list[str]:
     return repos
 
 
-def get_commits(session: requests.Session, repo: str, since: str, until: str) -> list[dict]:
-    """Fetch all commits in the repo between since..until (ISO 8601)."""
+def get_commits(session: requests.Session, repo: str, since: str, until: str) -> list[dict] | None:
+    """
+    Fetch all commits in [since, until] for the repo.
+    Returns None if the repo is inaccessible (404) or empty (409).
+    """
     commits, page = [], 1
     while True:
         r = session.get(
             f"{GITHUB_API}/repos/{ORG}/{repo}/commits",
             params={"since": since, "until": until, "per_page": 100, "page": page},
         )
-        if r.status_code == 409:          # empty repo
-            break
+        if r.status_code == 404:          # deleted / moved / no access
+            return None
+        if r.status_code == 409:          # empty / unborn repo
+            return []
         r.raise_for_status()
         batch = r.json()
         if not batch:
@@ -100,8 +105,10 @@ def get_commits(session: requests.Session, repo: str, since: str, until: str) ->
 
 
 def get_commit_stats(session: requests.Session, repo: str, sha: str) -> tuple[int, int]:
-    """Return (additions, deletions) for a single commit."""
+    """Return (additions, deletions) for a single commit. Returns (0, 0) on 404."""
     r = session.get(f"{GITHUB_API}/repos/{ORG}/{repo}/commits/{sha}")
+    if r.status_code == 404:
+        return 0, 0
     r.raise_for_status()
     stats = r.json().get("stats", {})
     return stats.get("additions", 0), stats.get("deletions", 0)
@@ -299,6 +306,11 @@ def main():
         # 1. Commits in range
         print(f"    Fetching commits …", end=" ", flush=True)
         commits = get_commits(session, repo, since_iso, until_iso)
+
+        if commits is None:
+            print("SKIPPED (404 — repo not found or inaccessible)")
+            continue
+
         print(f"{len(commits)} found")
 
         if not commits:
