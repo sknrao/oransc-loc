@@ -1,0 +1,478 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# O-RAN-SC LOC Stats — Batch Configuration
+# ─────────────────────────────────────────────────────────────────────────────
+# 13 projects × 3 releases = 39 runs
+#
+# Releases:
+#   K-Release : 2024-07-01 → 2024-12-31
+#   L-Release : 2025-01-01 → 2025-06-30
+#   M-Release : 2025-07-01 → 2025-12-31
+#
+# Repo lists sourced from: https://docs.o-ran-sc.org/en/latest/projects.html
+# ─────────────────────────────────────────────────────────────────────────────
+
+runs:
+
+  # ╔══════════════════════════════════════════════════════════════════════════╗
+  # ║  K-RELEASE  (2024-07-01 → 2024-12-31)                                  ║
+  # ╚══════════════════════════════════════════════════════════════════════════╝
+
+  - name: "[K] NONRTRIC — Non-Real-Time RIC"
+    since: "2024-07-01"
+    until: "2024-12-31"
+    repos:
+      - nonrtric
+      - nonrtric-plt-a1policymanagementservice
+      - nonrtric-plt-rappcatalogueservice
+      - nonrtric-plt-rappcatalogue
+      - nonrtric-plt-rappmanager
+      - nonrtric-plt-informationcoordinatorservice
+      - nonrtric-plt-helmmanager
+      - nonrtric-plt-sme
+      - nonrtric-plt-auth-token-fetch
+      - nonrtric-plt-kong-adapter
+      - nonrtric-plt-gateway
+      - nonrtric-rapp-healthcheck
+      - nonrtric-rapp-ransliceassurance
+      - nonrtric-rapp-orufhrecovery
+      - portal-nonrtric-controlpanel
+
+  - name: "[K] RICAPP — Near-RT RIC xApps"
+    since: "2024-07-01"
+    until: "2024-12-31"
+    repos:
+      - ric-app-ad
+      - ric-app-hw
+      - ric-app-hw-go
+      - ric-app-kpimon
+      - ric-app-qp
+      - ric-app-qp-aimlfw
+      - ric-app-ml
+      - ric-app-mc
+      - ric-app-ts
+      - ric-app-bouncer
+      - com-gs-lite
+
+  - name: "[K] RICPLT — Near-RT RIC Platform (E2 Interface)"
+    since: "2024-07-01"
+    until: "2024-12-31"
+    repos:
+      - ric-plt-a1
+      - ric-plt-e2
+      - ric-plt-e2mgr
+      - ric-plt-dbaas
+      - ric-plt-lib-rmr
+      - ric-plt-rtmgr
+      - ric-plt-submgr
+      - ric-plt-appmgr
+      - ric-plt-xapp-frame
+      - ric-plt-xapp-frame-cpp
+      - ric-plt-xapp-frame-py
+      - ric-plt-nodeb-rnib
+      - ric-plt-sdl
+      - ric-plt-sdlgo
+      - ric-plt-vespamgr
+      - ric-plt-jaegeradapter
+      - ric-plt-tracelibcpp
+      - ric-plt-tracelibgo
+      - ric-plt-streaming-protobufs
+      - ric-plt-resource-status-manager
+      - ric-plt-ric-dep
+      - ric-plt-asn1-documents
+      - com-log
+      - com-golog
+      - com-pylog
+
+  - name: "[K] OAM — Operations and Maintenance"
+    since: "2024-07-01"
+    until: "2024-12-31"
+    repos:
+      - oam
+      - oam-oam-controller
+      - oam-nf-oam-adopter
+      - oam-tr069-adapter
+      - portal-ric-dashboard
+      - scp-oam-modeling
+
+  - name: "[K] OCU — O-RAN Central Unit"
+    since: "2024-07-01"
+    until: "2024-12-31"
+    repos:
+      - scp-ocu-5gnr
+
+  - name: "[K] ODUHIGH — O-DU High Layer"
+    since: "2024-07-01"
+    until: "2024-12-31"
+    repos:
+      - o-du-l2
+
+  - name: "[K] ODULOW — O-DU Low Layer"
+    since: "2024-07-01"
+    until: "2024-12-31"
+    repos:
+      - o-du-phy
+
+  - name: "[K] SIM — Simulators"
+    since: "2024-07-01"
+    until: "2024-12-31"
+    repos:
+      - sim-a1-interface
+      - sim-o1-interface
+      - sim-e2-interface
+      - sim-o1-ofh-client
+      - sim-r1-interface
+
+  - name: "[K] SMO — Service Management and Orchestration"
+    since: "2024-07-01"
+    until: "2024-12-31"
+    repos:
+      - smo-teiv
+      - smo-ves
+      - smo-o1
+      - smo-o2
+
+  - name: "[K] INF — Infrastructure"
+    since: "2024-07-01"
+    until: "2024-12-31"
+    repos:
+      - pti-rtp
+      - pti-o2
+      - inf-o2
+      - inf-stx
+
+  - name: "[K] INT — Integration and Test"
+    since: "2024-07-01"
+    until: "2024-12-31"
+    repos:
+      - it-dep
+      - it-dev
+      - it-test
+      - it-otf
+
+  - name: "[K] AIMLFW — AI/ML Framework"
+    since: "2024-07-01"
+    until: "2024-12-31"
+    repos:
+      - aiml-fw-awmf-tm
+      - aiml-fw-aimlfw-dep
+      - aiml-fw-athp-data-extraction
+      - aiml-fw-athp-sdk-feature-store
+      - aiml-fw-athp-sdk-model-storage
+      - aiml-fw-athp-tps-kubeflow-adapter
+      - portal-aiml-dashboard
+
+  - name: "[K] DOC — Documentation"
+    since: "2024-07-01"
+    until: "2024-12-31"
+    repos:
+      - doc
+
+
+  # ╔══════════════════════════════════════════════════════════════════════════╗
+  # ║  L-RELEASE  (2025-01-01 → 2025-06-30)                                  ║
+  # ╚══════════════════════════════════════════════════════════════════════════╝
+
+  - name: "[L] NONRTRIC — Non-Real-Time RIC"
+    since: "2025-01-01"
+    until: "2025-06-30"
+    repos:
+      - nonrtric
+      - nonrtric-plt-a1policymanagementservice
+      - nonrtric-plt-rappcatalogueservice
+      - nonrtric-plt-rappcatalogue
+      - nonrtric-plt-rappmanager
+      - nonrtric-plt-informationcoordinatorservice
+      - nonrtric-plt-helmmanager
+      - nonrtric-plt-sme
+      - nonrtric-plt-auth-token-fetch
+      - nonrtric-plt-kong-adapter
+      - nonrtric-plt-gateway
+      - nonrtric-rapp-healthcheck
+      - nonrtric-rapp-ransliceassurance
+      - nonrtric-rapp-orufhrecovery
+      - portal-nonrtric-controlpanel
+
+  - name: "[L] RICAPP — Near-RT RIC xApps"
+    since: "2025-01-01"
+    until: "2025-06-30"
+    repos:
+      - ric-app-ad
+      - ric-app-hw
+      - ric-app-hw-go
+      - ric-app-kpimon
+      - ric-app-qp
+      - ric-app-qp-aimlfw
+      - ric-app-ml
+      - ric-app-mc
+      - ric-app-ts
+      - ric-app-bouncer
+      - com-gs-lite
+
+  - name: "[L] RICPLT — Near-RT RIC Platform (E2 Interface)"
+    since: "2025-01-01"
+    until: "2025-06-30"
+    repos:
+      - ric-plt-a1
+      - ric-plt-e2
+      - ric-plt-e2mgr
+      - ric-plt-dbaas
+      - ric-plt-lib-rmr
+      - ric-plt-rtmgr
+      - ric-plt-submgr
+      - ric-plt-appmgr
+      - ric-plt-xapp-frame
+      - ric-plt-xapp-frame-cpp
+      - ric-plt-xapp-frame-py
+      - ric-plt-nodeb-rnib
+      - ric-plt-sdl
+      - ric-plt-sdlgo
+      - ric-plt-vespamgr
+      - ric-plt-jaegeradapter
+      - ric-plt-tracelibcpp
+      - ric-plt-tracelibgo
+      - ric-plt-streaming-protobufs
+      - ric-plt-resource-status-manager
+      - ric-plt-ric-dep
+      - ric-plt-asn1-documents
+      - com-log
+      - com-golog
+      - com-pylog
+
+  - name: "[L] OAM — Operations and Maintenance"
+    since: "2025-01-01"
+    until: "2025-06-30"
+    repos:
+      - oam
+      - oam-oam-controller
+      - oam-nf-oam-adopter
+      - oam-tr069-adapter
+      - portal-ric-dashboard
+      - scp-oam-modeling
+
+  - name: "[L] OCU — O-RAN Central Unit"
+    since: "2025-01-01"
+    until: "2025-06-30"
+    repos:
+      - scp-ocu-5gnr
+
+  - name: "[L] ODUHIGH — O-DU High Layer"
+    since: "2025-01-01"
+    until: "2025-06-30"
+    repos:
+      - o-du-l2
+
+  - name: "[L] ODULOW — O-DU Low Layer"
+    since: "2025-01-01"
+    until: "2025-06-30"
+    repos:
+      - o-du-phy
+
+  - name: "[L] SIM — Simulators"
+    since: "2025-01-01"
+    until: "2025-06-30"
+    repos:
+      - sim-a1-interface
+      - sim-o1-interface
+      - sim-e2-interface
+      - sim-o1-ofh-client
+      - sim-r1-interface
+
+  - name: "[L] SMO — Service Management and Orchestration"
+    since: "2025-01-01"
+    until: "2025-06-30"
+    repos:
+      - smo-teiv
+      - smo-ves
+      - smo-o1
+      - smo-o2
+
+  - name: "[L] INF — Infrastructure"
+    since: "2025-01-01"
+    until: "2025-06-30"
+    repos:
+      - pti-rtp
+      - pti-o2
+      - inf-o2
+      - inf-stx
+
+  - name: "[L] INT — Integration and Test"
+    since: "2025-01-01"
+    until: "2025-06-30"
+    repos:
+      - it-dep
+      - it-dev
+      - it-test
+      - it-otf
+
+  - name: "[L] AIMLFW — AI/ML Framework"
+    since: "2025-01-01"
+    until: "2025-06-30"
+    repos:
+      - aiml-fw-awmf-tm
+      - aiml-fw-aimlfw-dep
+      - aiml-fw-athp-data-extraction
+      - aiml-fw-athp-sdk-feature-store
+      - aiml-fw-athp-sdk-model-storage
+      - aiml-fw-athp-tps-kubeflow-adapter
+      - portal-aiml-dashboard
+
+  - name: "[L] DOC — Documentation"
+    since: "2025-01-01"
+    until: "2025-06-30"
+    repos:
+      - doc
+
+
+  # ╔══════════════════════════════════════════════════════════════════════════╗
+  # ║  M-RELEASE  (2025-07-01 → 2025-12-31)                                  ║
+  # ╚══════════════════════════════════════════════════════════════════════════╝
+
+  - name: "[M] NONRTRIC — Non-Real-Time RIC"
+    since: "2025-07-01"
+    until: "2025-12-31"
+    repos:
+      - nonrtric
+      - nonrtric-plt-a1policymanagementservice
+      - nonrtric-plt-rappcatalogueservice
+      - nonrtric-plt-rappcatalogue
+      - nonrtric-plt-rappmanager
+      - nonrtric-plt-informationcoordinatorservice
+      - nonrtric-plt-helmmanager
+      - nonrtric-plt-sme
+      - nonrtric-plt-auth-token-fetch
+      - nonrtric-plt-kong-adapter
+      - nonrtric-plt-gateway
+      - nonrtric-rapp-healthcheck
+      - nonrtric-rapp-ransliceassurance
+      - nonrtric-rapp-orufhrecovery
+      - portal-nonrtric-controlpanel
+
+  - name: "[M] RICAPP — Near-RT RIC xApps"
+    since: "2025-07-01"
+    until: "2025-12-31"
+    repos:
+      - ric-app-ad
+      - ric-app-hw
+      - ric-app-hw-go
+      - ric-app-kpimon
+      - ric-app-qp
+      - ric-app-qp-aimlfw
+      - ric-app-ml
+      - ric-app-mc
+      - ric-app-ts
+      - ric-app-bouncer
+      - com-gs-lite
+
+  - name: "[M] RICPLT — Near-RT RIC Platform (E2 Interface)"
+    since: "2025-07-01"
+    until: "2025-12-31"
+    repos:
+      - ric-plt-a1
+      - ric-plt-e2
+      - ric-plt-e2mgr
+      - ric-plt-dbaas
+      - ric-plt-lib-rmr
+      - ric-plt-rtmgr
+      - ric-plt-submgr
+      - ric-plt-appmgr
+      - ric-plt-xapp-frame
+      - ric-plt-xapp-frame-cpp
+      - ric-plt-xapp-frame-py
+      - ric-plt-nodeb-rnib
+      - ric-plt-sdl
+      - ric-plt-sdlgo
+      - ric-plt-vespamgr
+      - ric-plt-jaegeradapter
+      - ric-plt-tracelibcpp
+      - ric-plt-tracelibgo
+      - ric-plt-streaming-protobufs
+      - ric-plt-resource-status-manager
+      - ric-plt-ric-dep
+      - ric-plt-asn1-documents
+      - com-log
+      - com-golog
+      - com-pylog
+
+  - name: "[M] OAM — Operations and Maintenance"
+    since: "2025-07-01"
+    until: "2025-12-31"
+    repos:
+      - oam
+      - oam-oam-controller
+      - oam-nf-oam-adopter
+      - oam-tr069-adapter
+      - portal-ric-dashboard
+      - scp-oam-modeling
+
+  - name: "[M] OCU — O-RAN Central Unit"
+    since: "2025-07-01"
+    until: "2025-12-31"
+    repos:
+      - scp-ocu-5gnr
+
+  - name: "[M] ODUHIGH — O-DU High Layer"
+    since: "2025-07-01"
+    until: "2025-12-31"
+    repos:
+      - o-du-l2
+
+  - name: "[M] ODULOW — O-DU Low Layer"
+    since: "2025-07-01"
+    until: "2025-12-31"
+    repos:
+      - o-du-phy
+
+  - name: "[M] SIM — Simulators"
+    since: "2025-07-01"
+    until: "2025-12-31"
+    repos:
+      - sim-a1-interface
+      - sim-o1-interface
+      - sim-e2-interface
+      - sim-o1-ofh-client
+      - sim-r1-interface
+
+  - name: "[M] SMO — Service Management and Orchestration"
+    since: "2025-07-01"
+    until: "2025-12-31"
+    repos:
+      - smo-teiv
+      - smo-ves
+      - smo-o1
+      - smo-o2
+
+  - name: "[M] INF — Infrastructure"
+    since: "2025-07-01"
+    until: "2025-12-31"
+    repos:
+      - pti-rtp
+      - pti-o2
+      - inf-o2
+      - inf-stx
+
+  - name: "[M] INT — Integration and Test"
+    since: "2025-07-01"
+    until: "2025-12-31"
+    repos:
+      - it-dep
+      - it-dev
+      - it-test
+      - it-otf
+
+  - name: "[M] AIMLFW — AI/ML Framework"
+    since: "2025-07-01"
+    until: "2025-12-31"
+    repos:
+      - aiml-fw-awmf-tm
+      - aiml-fw-aimlfw-dep
+      - aiml-fw-athp-data-extraction
+      - aiml-fw-athp-sdk-feature-store
+      - aiml-fw-athp-sdk-model-storage
+      - aiml-fw-athp-tps-kubeflow-adapter
+      - portal-aiml-dashboard
+
+  - name: "[M] DOC — Documentation"
+    since: "2025-07-01"
+    until: "2025-12-31"
+    repos:
+      - doc
